@@ -1,0 +1,150 @@
+# Ouroboros Seed — 금융 학습 시뮬레이션 게임 MVP
+# seed_id: seed_f33457d61b49
+# interview_id: interview_20260811_091735
+# ambiguity_score: 0.05
+# generated: 2026-08-11
+
+goal: 금융 초보자가 가상 월급으로 주식 3~5턴을 직접 플레이하고, 각 턴의 주가 변동 원인을 지표와 함께 이해하도록, 백엔드 없이 링크로 실행되는 정적 웹(React+TypeScript) 금융 학습 시뮬레이션 MVP를 만든다.
+
+task_type: code
+
+brownfield_context:
+  project_type: greenfield
+  context_references: []
+  existing_patterns: []
+  existing_dependencies: []
+
+constraints:
+  - 기술 스택은 React + TypeScript, 브라우저에서 설치 없이 링크로 실행되는 정적 웹으로 배포 가능해야 한다
+  - 백엔드·서버·데이터베이스 없음; 프론트엔드만으로 완결
+  - 시나리오는 정적 JSON 데이터 파일로 관리하며 코드에 하드코딩하지 않는다
+  - "고정 시나리오 2~3세트(A/B/C): 1회차는 전원 A 세트 고정, 재플레이 시 B→C 순 전환, 런타임 랜덤/절차적 생성 없음"
+  - 한 세션 = 3~5턴(1턴 = 게임 내 1개월), 총 플레이 시간 15분 내외, 세션 종료 시 결산 화면 제공
+  - 모든 턴의 모든 주가 변동에는 1개 이상의 원인 카드가 연결되어야 하며 이 연결은 자동 검증 가능해야 한다
+  - 한 턴의 원인 카드 기여도(%p) 합은 그 턴 주가 변동률과 일치해야 한다(정확 일치 또는 명시적 소수점 자리 규칙)
+  - 각 턴에서 기여도 절댓값 최댓값은 유일해야 한다(정답 원인 항상 유일, 동점 금지)
+  - 채점 퀴즈는 턴당 정확히 1회, 대상은 그 턴에 투자(매수/보유)한 기업 1개; 투자 대상이 없으면 변동폭 절댓값이 가장 큰 기업
+  - "채점 순서는 선택→공개: impact_ticks 수치는 플레이어 선택 이전까지 UI에 노출 금지, 선택 후 정오답과 전체 기여도를 함께 공개"
+  - 선택한 원인은 연결 지표(linked_indicator)와 함께 표시한다
+  - 개인 현금흐름 화면은 월급·생활비·현금·투자금·수익/손실을 한 화면에서 보여준다
+  - 선택 정오답은 결산 화면에서 "n턴 중 m턴 정답"으로 집계한다
+  - 검증 대상자는 4명이며 환산된 합격선이 최종 기준이다
+
+acceptance_criteria:
+  - description: 모든 시나리오 세트에서 각 턴의 모든 주가 변동에 원인 카드가 1개 이상 연결되고, 원인 기여도 합이 변동률과 일치하며, 기여도 절댓값 최댓값이 유일하다는 불변식이 자동 검증을 통과한다
+    semantic_ac_key: ac_4606d386a00a2868
+    verify_command: node scripts/validate-scenarios.mjs && echo OK
+    expected_artifacts:
+      - data/scenarios
+      - scripts/validate-scenarios.mjs
+    output_assertion: OK
+  - description: 고정 시나리오가 A/B/C 정적 JSON 데이터로 존재하고 코드 하드코딩이 아니다
+    semantic_ac_key: ac_18b02b4c793b8be1
+    expected_artifacts:
+      - data/scenarios/set-a.json
+  - description: 턴 결과에서 원인 카드 기여도 수치를 가린 채 라벨만 제시하고 플레이어가 가장 큰 영향 원인 1개를 선택한 뒤에야 정오답과 전체 기여도(및 연결 지표)를 공개하는 선택→공개 흐름이 동작한다
+    semantic_ac_key: ac_bb774cbe3f7f5c0c
+  - description: 개인 현금흐름 화면에서 월급·생활비·현금·투자금·수익/손실을 한 화면에서 확인할 수 있다
+    semantic_ac_key: ac_2536dbfa0b56669f
+  - description: 한 세션이 3~5턴을 진행한 뒤 결산 화면으로 종료되며 결산 화면이 "n턴 중 m턴 정답"을 집계해 보여준다
+    semantic_ac_key: ac_25902c06625bf6ee
+  - description: 백엔드 없이 정적 웹으로 프로덕션 빌드가 산출되어 링크로 실행 가능하다
+    semantic_ac_key: ac_f6a3e2d52fe934b7
+    expected_artifacts:
+      - dist/index.html
+
+ontology_schema:
+  name: StockTurnScenario
+  description: 원인 기반 주식 투자 학습 게임의 고정 시나리오 도메인 모델 — 세트(A/B/C), 턴(월), 가상 기업의 5개 지표, 주가 변동, 수치 기여도가 명시된 원인 카드, 개인 현금흐름 상태를 표현한다.
+  fields:
+    - name: scenario_set_id
+      type: string
+      description: 시나리오 세트 식별자 (A/B/C)
+      required: true
+    - name: turn_index
+      type: number
+      description: 턴 번호 = 게임 내 개월 (세션당 3~5)
+      required: true
+    - name: companies
+      type: array
+      description: 가상 기업 3개 목록
+      required: true
+    - name: indicators
+      type: object
+      description: "기업 지표 5종: 매출, 영업이익, 부채비율, PER, 외국인·기관 순매수"
+      required: true
+    - name: price_change_rate
+      type: number
+      description: 해당 턴 기업의 실제 주가 변동률(%)
+      required: true
+    - name: cause_cards
+      type: array
+      description: 변동에 연결된 원인 카드 목록; 각 카드는 label, impact_ticks(%p), linked_indicator 포함
+      required: true
+    - name: impact_ticks
+      type: number
+      description: 원인 카드의 수치 기여도(%p); 절댓값 최댓값이 정답 원인
+      required: true
+    - name: linked_indicator
+      type: string
+      description: 원인 카드가 연결된 지표
+      required: true
+    - name: correct_cause_id
+      type: string
+      description: 기여도 절댓값이 가장 큰 유일한 정답 원인 카드 id
+      required: true
+    - name: cashflow
+      type: object
+      description: "개인 현금흐름 상태: 월급, 생활비, 현금, 투자금, 손익"
+      required: true
+    - name: player_action
+      type: string
+      description: "턴 선택: 매수/보유/매도/보류"
+      required: true
+    - name: quiz_target_company
+      type: string
+      description: 턴당 1회 채점 대상 기업 (투자 기업, 없으면 변동폭 절댓값 최대 기업)
+      required: true
+
+evaluation_principles:
+  - name: 원인-지표 연결성
+    description: 모든 주가 변동이 사전 정의된 원인 카드 및 연결 지표로 설명되어 "지표와 함께 이해" 목표를 충족하는가
+    weight: 0.3
+  - name: 데이터 정합성
+    description: 기여도 합 = 변동률, 정답 원인 유일성 등 불변식이 자동 검증을 통과하는가
+    weight: 0.25
+  - name: 학습 측정 가능성
+    description: 선택→공개 채점 흐름과 결산 집계가 성공 기준을 관찰자가 측정할 수 있게 만드는가
+    weight: 0.2
+  - name: 검증 접근성
+    description: 설치 없이 링크로 4명 검증자가 15분 내 완주 가능한 정적 웹으로 배포되는가
+    weight: 0.15
+  - name: MVP 범위 준수
+    description: 경험치·레벨업·부동산·서버 등 제외 범위를 포함하지 않는가
+    weight: 0.1
+
+exit_conditions:
+  - name: 데이터 불변식 통과
+    description: 모든 시나리오 세트가 원인 연결·기여도 합·정답 유일성 불변식 자동 검증을 통과
+    criteria: validate-scenarios가 오류 0으로 통과
+  - name: 핵심 플레이 흐름 완성
+    description: 3~5턴 세션, 선택→공개 채점, 현금흐름 화면, 결산 집계가 동작
+    criteria: 6개 수용 기준의 관찰 가능한 상태가 모두 참
+  - name: 사용자 검증 합격선 도달
+    description: 4명 검증자 기준 환산 성공 기준 충족
+    criteria: 3/4 무설명 첫 턴 완주, 3/4 지표 2개 이상 자기 말 설명, 2/4 최대 영향 원인 선택, 3/4 "부담 적다" 평가, 2/4 재플레이
+  - name: 범위 초과 방지
+    description: 제외 범위 기능이 포함되면 종료 보류
+    criteria: 경험치/레벨업/해금, 부동산/도시, 로그인/서버저장/모바일앱, 랜덤생성 중 어느 것도 구현되지 않음
+
+metadata:
+  seed_id: seed_f33457d61b49
+  version: 1.0.0
+  created_at: "2026-08-11T09:40:44.472339Z"
+  ambiguity_score: 0.05
+  interview_id: interview_20260811_091735
+  parent_seed_id: null
+  generation_mode: normal
+  degraded: false
+  unresolved_slots: []
+  recovery_reason: null

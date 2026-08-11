@@ -1,0 +1,17 @@
+# macOS
+.DS_Store
+
+# 도구 스크래치 디렉터리
+.superpowers/
+.ouroboros/
+
+# Node
+node_modules/
+dist/
+build/
+*.log
+.vite/
+
+# 환경 변수
+.env
+.env.local
