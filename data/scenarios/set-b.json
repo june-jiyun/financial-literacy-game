@@ -1,0 +1,291 @@
+{
+  "scenario_set_id": "B",
+  "initial_cashflow": {
+    "salary": 3200000,
+    "living_cost": 1600000,
+    "cash": 6000000,
+    "invested": 0,
+    "profit_loss": 0
+  },
+  "turns": [
+    {
+      "turn_index": 1,
+      "month_label": "2024년 7월",
+      "companies": [
+        {
+          "id": "halla_elec",
+          "name": "한라전자",
+          "sector": "반도체·전자",
+          "base_price": 72000,
+          "indicators": {
+            "revenue": { "value": 2800, "unit": "억원", "change": 25.0 },
+            "operating_profit": { "value": 420, "unit": "억원", "change": 32.0 },
+            "debt_ratio": { "value": 28.0, "unit": "%" },
+            "per": { "value": 15.0, "unit": "배" },
+            "net_buying": { "foreign": 9000, "institutional": 3000, "unit": "백만원" }
+          },
+          "price_change_rate": 8.0,
+          "cause_cards": [
+            {
+              "id": "cc_b_t1_c1_1",
+              "label": "반도체 수출 25% 증가로 분기 매출 신기록 달성",
+              "impact_ticks": 6.0,
+              "linked_indicator": "revenue"
+            },
+            {
+              "id": "cc_b_t1_c1_2",
+              "label": "외국인 대규모 순매수 집중",
+              "impact_ticks": 2.0,
+              "linked_indicator": "net_buying"
+            }
+          ],
+          "correct_cause_id": "cc_b_t1_c1_1"
+        },
+        {
+          "id": "sonagi_shop",
+          "name": "소나기쇼핑",
+          "sector": "유통·리테일",
+          "base_price": 35000,
+          "indicators": {
+            "revenue": { "value": 1200, "unit": "억원", "change": -5.0 },
+            "operating_profit": { "value": 48, "unit": "억원", "change": -40.0 },
+            "debt_ratio": { "value": 70.0, "unit": "%" },
+            "per": { "value": 20.0, "unit": "배" },
+            "net_buying": { "foreign": -1500, "institutional": -800, "unit": "백만원" }
+          },
+          "price_change_rate": -5.0,
+          "cause_cards": [
+            {
+              "id": "cc_b_t1_c2_1",
+              "label": "소비 위축으로 영업이익 40% 급감",
+              "impact_ticks": -4.0,
+              "linked_indicator": "operating_profit"
+            },
+            {
+              "id": "cc_b_t1_c2_2",
+              "label": "부채비율 70% 돌파로 재무 부담 우려",
+              "impact_ticks": -1.0,
+              "linked_indicator": "debt_ratio"
+            }
+          ],
+          "correct_cause_id": "cc_b_t1_c2_1"
+        },
+        {
+          "id": "pureun_energy",
+          "name": "푸른에너지",
+          "sector": "신재생에너지",
+          "base_price": 42000,
+          "indicators": {
+            "revenue": { "value": 680, "unit": "억원", "change": 5.0 },
+            "operating_profit": { "value": 75, "unit": "억원", "change": 10.0 },
+            "debt_ratio": { "value": 45.0, "unit": "%" },
+            "per": { "value": 12.0, "unit": "배" },
+            "net_buying": { "foreign": 2500, "institutional": 1200, "unit": "백만원" }
+          },
+          "price_change_rate": 3.5,
+          "cause_cards": [
+            {
+              "id": "cc_b_t1_c3_1",
+              "label": "외국인·기관 동반 순매수로 수급 개선",
+              "impact_ticks": 2.5,
+              "linked_indicator": "net_buying"
+            },
+            {
+              "id": "cc_b_t1_c3_2",
+              "label": "PER 12배 저평가로 밸류에이션 매력 부각",
+              "impact_ticks": 1.0,
+              "linked_indicator": "per"
+            }
+          ],
+          "correct_cause_id": "cc_b_t1_c3_1"
+        }
+      ]
+    },
+    {
+      "turn_index": 2,
+      "month_label": "2024년 8월",
+      "companies": [
+        {
+          "id": "halla_elec",
+          "name": "한라전자",
+          "sector": "반도체·전자",
+          "base_price": 77760,
+          "indicators": {
+            "revenue": { "value": 2600, "unit": "억원", "change": 10.0 },
+            "operating_profit": { "value": 350, "unit": "억원", "change": -12.0 },
+            "debt_ratio": { "value": 35.0, "unit": "%" },
+            "per": { "value": 13.0, "unit": "배" },
+            "net_buying": { "foreign": -2000, "institutional": -1500, "unit": "백만원" }
+          },
+          "price_change_rate": -4.0,
+          "cause_cards": [
+            {
+              "id": "cc_b_t2_c1_1",
+              "label": "글로벌 반도체 공급과잉으로 영업이익 감소 우려",
+              "impact_ticks": -3.0,
+              "linked_indicator": "operating_profit"
+            },
+            {
+              "id": "cc_b_t2_c1_2",
+              "label": "부채비율 상승으로 신용등급 하향 우려",
+              "impact_ticks": -1.0,
+              "linked_indicator": "debt_ratio"
+            }
+          ],
+          "correct_cause_id": "cc_b_t2_c1_1"
+        },
+        {
+          "id": "sonagi_shop",
+          "name": "소나기쇼핑",
+          "sector": "유통·리테일",
+          "base_price": 33250,
+          "indicators": {
+            "revenue": { "value": 1560, "unit": "억원", "change": 30.0 },
+            "operating_profit": { "value": 95, "unit": "억원", "change": 98.0 },
+            "debt_ratio": { "value": 62.0, "unit": "%" },
+            "per": { "value": 18.0, "unit": "배" },
+            "net_buying": { "foreign": 3500, "institutional": 2200, "unit": "백만원" }
+          },
+          "price_change_rate": 7.0,
+          "cause_cards": [
+            {
+              "id": "cc_b_t2_c2_1",
+              "label": "여름 대형 세일 행사 성공으로 매출 30% 급증",
+              "impact_ticks": 5.0,
+              "linked_indicator": "revenue"
+            },
+            {
+              "id": "cc_b_t2_c2_2",
+              "label": "기관투자자 집중 순매수 재진입",
+              "impact_ticks": 2.0,
+              "linked_indicator": "net_buying"
+            }
+          ],
+          "correct_cause_id": "cc_b_t2_c2_1"
+        },
+        {
+          "id": "pureun_energy",
+          "name": "푸른에너지",
+          "sector": "신재생에너지",
+          "base_price": 43470,
+          "indicators": {
+            "revenue": { "value": 660, "unit": "억원", "change": -3.0 },
+            "operating_profit": { "value": 65, "unit": "억원", "change": -13.0 },
+            "debt_ratio": { "value": 48.0, "unit": "%" },
+            "per": { "value": 10.0, "unit": "배" },
+            "net_buying": { "foreign": -800, "institutional": -200, "unit": "백만원" }
+          },
+          "price_change_rate": -2.5,
+          "cause_cards": [
+            {
+              "id": "cc_b_t2_c3_1",
+              "label": "유가 하락으로 신재생에너지 PER 매력 감소, 성장성 의문",
+              "impact_ticks": -2.0,
+              "linked_indicator": "per"
+            },
+            {
+              "id": "cc_b_t2_c3_2",
+              "label": "외국인 소규모 순매도",
+              "impact_ticks": -0.5,
+              "linked_indicator": "net_buying"
+            }
+          ],
+          "correct_cause_id": "cc_b_t2_c3_1"
+        }
+      ]
+    },
+    {
+      "turn_index": 3,
+      "month_label": "2024년 9월",
+      "companies": [
+        {
+          "id": "halla_elec",
+          "name": "한라전자",
+          "sector": "반도체·전자",
+          "base_price": 74650,
+          "indicators": {
+            "revenue": { "value": 3500, "unit": "억원", "change": 40.0 },
+            "operating_profit": { "value": 580, "unit": "억원", "change": 65.0 },
+            "debt_ratio": { "value": 25.0, "unit": "%" },
+            "per": { "value": 18.0, "unit": "배" },
+            "net_buying": { "foreign": 12000, "institutional": 6000, "unit": "백만원" }
+          },
+          "price_change_rate": 12.0,
+          "cause_cards": [
+            {
+              "id": "cc_b_t3_c1_1",
+              "label": "AI 반도체 신제품 글로벌 수주 폭증으로 매출 40% 급증",
+              "impact_ticks": 9.0,
+              "linked_indicator": "revenue"
+            },
+            {
+              "id": "cc_b_t3_c1_2",
+              "label": "외국인·기관 동시 대규모 순매수",
+              "impact_ticks": 3.0,
+              "linked_indicator": "net_buying"
+            }
+          ],
+          "correct_cause_id": "cc_b_t3_c1_1"
+        },
+        {
+          "id": "sonagi_shop",
+          "name": "소나기쇼핑",
+          "sector": "유통·리테일",
+          "base_price": 35578,
+          "indicators": {
+            "revenue": { "value": 1480, "unit": "억원", "change": -5.0 },
+            "operating_profit": { "value": 70, "unit": "억원", "change": -26.0 },
+            "debt_ratio": { "value": 75.0, "unit": "%" },
+            "per": { "value": 22.0, "unit": "배" },
+            "net_buying": { "foreign": -1200, "institutional": -900, "unit": "백만원" }
+          },
+          "price_change_rate": -3.0,
+          "cause_cards": [
+            {
+              "id": "cc_b_t3_c2_1",
+              "label": "부채 상환 부담 누적으로 부채비율 75% 돌파",
+              "impact_ticks": -2.0,
+              "linked_indicator": "debt_ratio"
+            },
+            {
+              "id": "cc_b_t3_c2_2",
+              "label": "외국인 순매도 지속",
+              "impact_ticks": -1.0,
+              "linked_indicator": "net_buying"
+            }
+          ],
+          "correct_cause_id": "cc_b_t3_c2_1"
+        },
+        {
+          "id": "pureun_energy",
+          "name": "푸른에너지",
+          "sector": "신재생에너지",
+          "base_price": 42384,
+          "indicators": {
+            "revenue": { "value": 720, "unit": "억원", "change": 9.0 },
+            "operating_profit": { "value": 112, "unit": "억원", "change": 72.0 },
+            "debt_ratio": { "value": 40.0, "unit": "%" },
+            "per": { "value": 14.0, "unit": "배" },
+            "net_buying": { "foreign": 4500, "institutional": 1500, "unit": "백만원" }
+          },
+          "price_change_rate": 6.0,
+          "cause_cards": [
+            {
+              "id": "cc_b_t3_c3_1",
+              "label": "정부 재생에너지 정책 수혜로 영업이익 72% 급증",
+              "impact_ticks": 5.0,
+              "linked_indicator": "operating_profit"
+            },
+            {
+              "id": "cc_b_t3_c3_2",
+              "label": "외국인 대규모 순매수 복귀",
+              "impact_ticks": 1.0,
+              "linked_indicator": "net_buying"
+            }
+          ],
+          "correct_cause_id": "cc_b_t3_c3_1"
+        }
+      ]
+    }
+  ]
+}

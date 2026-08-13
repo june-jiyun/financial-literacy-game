@@ -1,0 +1,190 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f0f4f8;
+  color: #1a202c;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.screen {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.btn:hover { opacity: 0.85; }
+.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-primary { background: #3b82f6; color: #fff; }
+.btn-success { background: #22c55e; color: #fff; }
+.btn-danger  { background: #ef4444; color: #fff; }
+.btn-outline { background: transparent; border: 2px solid #3b82f6; color: #3b82f6; }
+.btn-sm { padding: 6px 14px; font-size: 13px; }
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+}
+.tag-up   { background: #fee2e2; color: #dc2626; }
+.tag-down { background: #dbeafe; color: #2563eb; }
+.tag-neutral { background: #f3f4f6; color: #6b7280; }
+
+.indicator-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.indicator-table th, .indicator-table td {
+  padding: 6px 8px;
+  border-bottom: 1px solid #f0f0f0;
+  text-align: left;
+}
+.indicator-table th { color: #6b7280; font-weight: 500; }
+
+.cause-card {
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.cause-card:hover { border-color: #93c5fd; background: #eff6ff; }
+.cause-card.selected { border-color: #3b82f6; background: #eff6ff; }
+.cause-card.correct  { border-color: #22c55e; background: #f0fdf4; }
+.cause-card.wrong    { border-color: #ef4444; background: #fef2f2; }
+
+.impact-badge {
+  font-size: 13px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+.impact-pos { background: #fee2e2; color: #dc2626; }
+.impact-neg { background: #dbeafe; color: #2563eb; }
+
+.cashflow-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 15px;
+}
+.cashflow-row:last-child { border-bottom: none; }
+.cashflow-label { color: #6b7280; }
+.cashflow-value { font-weight: 700; }
+.val-pos { color: #16a34a; }
+.val-neg { color: #dc2626; }
+
+.company-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.company-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+}
+
+.company-name { font-size: 17px; font-weight: 700; }
+.company-sector { font-size: 12px; color: #6b7280; margin-top: 2px; }
+.company-price { font-size: 15px; font-weight: 600; text-align: right; }
+
+.action-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
+.action-btn {
+  flex: 1;
+  padding: 8px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+}
+.action-btn:hover { border-color: #3b82f6; color: #3b82f6; }
+.action-btn.active { border-color: #3b82f6; background: #3b82f6; color: #fff; }
+.action-btn.disabled-btn { opacity: 0.35; cursor: not-allowed; pointer-events: none; }
+
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.page-title { font-size: 22px; font-weight: 800; }
+.page-subtitle { font-size: 14px; color: #6b7280; }
+
+.result-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.result-correct { background: #dcfce7; color: #16a34a; }
+.result-wrong   { background: #fee2e2; color: #dc2626; }
+
+.highlighted-company {
+  border: 2px solid #3b82f6;
+}
+
+.mb-8  { margin-bottom: 8px; }
+.mb-12 { margin-bottom: 12px; }
+.mb-16 { margin-bottom: 16px; }
+.mb-24 { margin-bottom: 24px; }
+.mt-16 { margin-top: 16px; }
+.mt-24 { margin-top: 24px; }
+
+.text-center { text-align: center; }
+.text-sm     { font-size: 13px; }
+.text-gray   { color: #6b7280; }
+
+.score-big {
+  font-size: 56px;
+  font-weight: 900;
+  line-height: 1;
+}
+.score-label { font-size: 18px; color: #6b7280; margin-top: 4px; }
+
+.flex { display: flex; }
+.gap-8 { gap: 8px; }
+.gap-12 { gap: 12px; }
+.items-center { align-items: center; }
+.justify-between { justify-content: space-between; }
+.flex-wrap { flex-wrap: wrap; }
