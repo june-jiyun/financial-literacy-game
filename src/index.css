@@ -188,3 +188,39 @@ body {
 .items-center { align-items: center; }
 .justify-between { justify-content: space-between; }
 .flex-wrap { flex-wrap: wrap; }
+
+/* ── 좁은 화면 (휴대폰) ────────────────────────────────────────────
+   검증자가 링크를 휴대폰에서 열 수 있어야 하므로, 레이아웃 문제가
+   게임 이해도 문제로 오인되지 않게 조정한다.
+   열 구성은 이미 유동적이라(company-grid는 auto-fit으로 1열로 접힘)
+   여백·글자 크기·탭 영역만 손본다. */
+@media (max-width: 640px) {
+  .screen { padding: 16px 12px; }
+  .card { padding: 16px; }
+
+  /* 제목이 길면 부제목을 다음 줄로 내린다 */
+  .page-header { flex-wrap: wrap; gap: 8px 12px; margin-bottom: 16px; }
+  .page-title { font-size: 19px; }
+
+  /* 손가락 탭 영역 확보 — 44px는 오탭을 막는 실질 최소치 */
+  .btn { padding: 12px 22px; min-height: 44px; }
+  .btn-sm { padding: 8px 16px; min-height: 36px; }
+  .action-btn { padding: 12px 8px; min-height: 44px; }
+
+  /* 원인 문장이 길면 기여도 배지를 아래 줄로 내려 글자를 누르지 않게 한다 */
+  .cause-card { padding: 14px; gap: 10px; flex-wrap: wrap; }
+
+  /* 금액이 길어도 항목명과 겹치지 않게 최소 간격을 준다 */
+  .cashflow-row { gap: 12px; font-size: 14px; }
+  .cashflow-label { min-width: 0; }
+
+  .indicator-table { font-size: 13px; }
+  .indicator-table th, .indicator-table td { padding: 6px 4px; }
+
+  .company-grid { gap: 12px; }
+  .company-name { font-size: 16px; }
+
+  /* 56px은 좁은 화면에서 줄바꿈을 유발한다 */
+  .score-big { font-size: 44px; }
+  .score-label { font-size: 16px; }
+}
